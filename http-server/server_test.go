@@ -1,4 +1,4 @@
-package main
+package poker
 
 import (
 	"encoding/json"
@@ -109,25 +109,6 @@ func assertResponseBody(t testing.TB, got, want string) {
 	if got != want {
 		t.Errorf("%q got, want %q", got, want)
 	}
-}
-
-type StubPlayerStore struct {
-	scores   map[string]int
-	winCalls []string
-	league   []Player
-}
-
-func (s *StubPlayerStore) GetPlayerScore(name string) int {
-	score := s.scores[name]
-	return score
-}
-
-func (s *StubPlayerStore) RecordWin(name string) {
-	s.winCalls = append(s.winCalls, name)
-}
-
-func (s *StubPlayerStore) GetLeague() League {
-	return s.league
 }
 
 func TestLeague(t *testing.T) {
